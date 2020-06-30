@@ -47,8 +47,6 @@ class Game extends React.Component {
       calculateWinner(current.squares) != null
         ? calculateWinner(current.squares)
         : [null, null];
-    console.log(winnerTiles);
-    console.log(calculateWinner(current.squares));
 
     const moves = history.map((step, move) => {
       // console.log(move);
@@ -72,10 +70,11 @@ class Game extends React.Component {
         </li>
       );
     });
-
     let status;
     if (winner) {
       status = "Winner: " + winner;
+    } else if (!current.squares.includes(null)) {
+      status = "Match draw";
     } else {
       status = "Next Player: " + (this.state.xIsNext ? "X" : "O");
     }
