@@ -2,10 +2,11 @@ import React from "react";
 import Square from "./Square";
 
 class Board extends React.Component {
-  renderSquare(i) {
+  renderSquare(i, style) {
     return (
       <Square
         key={i}
+        style={style}
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
       />
@@ -26,7 +27,18 @@ class Board extends React.Component {
     for (let i = 0; i < 3; i++) {
       let eachSquareRow = [];
       for (let j = 0; j < 3; j++) {
-        eachSquareRow.push(this.renderSquare(3 * i + j));
+        const tileNumber = 3 * i + j;
+
+        if (
+          this.props.colorTiles != null &&
+          this.props.colorTiles.includes(tileNumber)
+        ) {
+          eachSquareRow.push(
+            this.renderSquare(tileNumber, { border: "2px solid #0000FF" })
+          );
+        } else {
+          eachSquareRow.push(this.renderSquare(tileNumber, null));
+        }
       }
       gameBoard.push(
         <div key={"row" + i} className="board-row">

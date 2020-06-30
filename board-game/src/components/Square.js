@@ -25,7 +25,7 @@ states : each component can have state to remember things
 
 function Square(props) {
   return (
-    <button className="square" onClick={props.onClick}>
+    <button className="square" onClick={props.onClick} style={props.style}>
       {props.value}
     </button>
   );
